@@ -1,0 +1,20 @@
+# Local Bridge session data and user artifacts
+Bridge/
+Requests/
+Responses/
+Claims/
+Assets/
+Output/
+client.lock
+
+# Internal project records and archived delivery assets
+\!Manual/
+BackUp/
+Final/
+GPT-tapasztalat.md
+Tools/
+Tests/
+docs/github-readiness/
+
+# Adobe / UXP package output
+*.ccx
