@@ -6,6 +6,7 @@ Claims/
 Assets/
 Output/
 client.lock
+status.json
 
 # Internal project records and archived delivery assets
 \!Manual/
