@@ -35,6 +35,8 @@ The release download contains only the loadable plug-in, the local client needed
 
 - [Installation](INSTALL.md)
 - [Usage](USAGE.md)
+- [Download Codex-InDesign-Bridge-v0.3.0.zip](Downloads/Codex-InDesign-Bridge-v0.3.0.zip)
+- [SHA-256 checksum](Downloads/Codex-InDesign-Bridge-v0.3.0.zip.sha256)
 
 ## Verification status
 
