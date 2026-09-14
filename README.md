@@ -46,4 +46,4 @@ The GitHub repository includes documentation and screenshots. The downloadable r
 
 ## License
 
-A public repository requires the project owner's explicit license decision before publication. No license file will be staged until that decision is confirmed.
+Released under the [MIT License](LICENSE).
