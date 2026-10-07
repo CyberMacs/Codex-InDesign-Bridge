@@ -86,6 +86,7 @@ function createExecutor(id, folders) {
     return folders.output.nativePath + "/" + file;
   }
   return async function execute(op, ctx) {
+    if (op.op === "restorationBook") return require("./restoration-book.js").execute(id, folders, op, ctx);
     if (op.op === "ping") return { version: VERSION, host: String(app.version), operations: OPS.concat("attachDocument") };
     if (op.op === "attachDocument") {
       const doc = documentFor(op, ctx, false);

@@ -1,18 +1,11 @@
-# Usage
+# Usage — v0.3.1 preview
 
-1. In InDesign, open the Codex InDesign Bridge panel.
-2. Select a private Bridge folder and start the connection.
-3. Send ping and list first.
-4. Use inspect before changing document content.
-5. For an existing document, use attachDocument with the exact document ID, exact name, and a new INDD backup file name.
-6. Make focused edits only after attachment succeeds.
-7. Use saveCopy and exportPDF or exportIDML for handoff.
-8. Inspect the saved result and stop the connection.
+1. Start the panel in a private local session folder.
+2. Run ping and list, then inspect the exact document/page before editing.
+3. For existing documents send `attachDocument` with the current document ID, exact name and a new INDD backup filename. Proceed only after its backup succeeds.
+4. Send a JSON array of supported operations using `node bridge-client.cjs "<session-folder>" send "<operations.json>"`. Use the current IDs returned by the panel.
+5. Save/export under unused filenames, inspect the result and stop the panel connection when finished.
 
-## Recovery rule
+The client reports the correlated response path if a request times out. Check that response and the Claims record. Never blindly repeat a modifying request. A failed batch can leave partial changes. The Stop button prevents subsequent operations; it does not cancel the current native operation.
 
-A client timeout does not prove that an operation failed. The request may be executing or may already have completed. Check the response file named by the client and never send the same modifying request again blindly.
-
-## Safe handling
-
-Do not select a shared, synchronised, or public Bridge folder. Do not leave the connection active when it is not needed. Treat write access to the selected folder as permission to issue InDesign commands.
+The optional `restorationBook` operation is described in docs/EXPERIMENTAL.md. Its build/save actions require `experimental: true` and must use disposable documents. Core bridge use does not require Source fonts.

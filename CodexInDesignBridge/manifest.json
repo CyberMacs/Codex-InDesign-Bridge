@@ -2,7 +2,7 @@
   "manifestVersion": 5,
   "id": "com.istvan.codex.indesignbridge",
   "name": "Codex InDesign Bridge",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "index.html",
   "host": {"app": "ID", "minVersion": "18.5.0"},
   "description": {"default": "Local, consent-based bridge between Codex and an open InDesign session.", "hu": "Helyi, jóváhagyásalapú kapcsolat a Codex és a megnyitott InDesign között."},

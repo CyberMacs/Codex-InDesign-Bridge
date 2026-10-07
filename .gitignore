@@ -1,4 +1,4 @@
-# Local Bridge session data and user artifacts
+# Private runtime and generated outputs
 Bridge/
 Requests/
 Responses/
@@ -7,15 +7,13 @@ Assets/
 Output/
 client.lock
 status.json
-
-# Internal project records and archived delivery assets
-\!Manual/
 BackUp/
 Final/
+dist/
+PROJECT_MEMORY/
+!Manual/
 GPT-tapasztalat.md
-Tools/
-Tests/
 docs/github-readiness/
-
-# Adobe / UXP package output
 *.ccx
+__pycache__/
+*.pyc

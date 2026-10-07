@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-// Codex InDesign Bridge 0.3.0. No third-party dependencies.
+// Codex InDesign Bridge 0.3.1. No third-party dependencies.
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const { randomUUID } = require("node:crypto");

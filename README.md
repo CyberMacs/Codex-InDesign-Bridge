@@ -1,51 +1,35 @@
 # Codex InDesign Bridge
 
-![Codex InDesign Bridge panel](docs/images/bridge-panel-v020.png)
+Codex InDesign Bridge is a local Adobe InDesign UXP panel for a trusted local Codex workflow. It exchanges validated JSON commands through a folder chosen by the user. It has no network server and needs no API key. This is an independent community project, not an Adobe or OpenAI product.
 
-Codex InDesign Bridge is a local, consent-based Adobe InDesign UXP panel that lets a trusted local Codex workflow inspect and automate an open InDesign session. It uses a user-selected folder and validated JSON requests; it does not run a network service and does not require an API key.
+## Version 0.3.1 — preview
 
-![Panel in InDesign](docs/images/bridge-panel-in-indesign-v020.png)
+The existing inspection, attachment/backup, document editing, image placement and export operations are retained. This preview adds the experimental `restorationBook` operation from the restoration-book project. Its build/save actions require explicit opt-in. The experimental export refuses existing output files.
 
-## Version and compatibility
+The panel manifest accepts InDesign 18.5+, but the book builder targets the APIs used during an InDesign 21.3 project and has not been verified through a live panel. Earlier completed book templates required additional native repairs. This module is not a verified one-click reproduction of those templates. Use disposable documents for host testing.
 
-- Current version: 0.3.0
-- Host: Adobe InDesign 2023 (18.5) or later
-- Development loader: Adobe UXP Developer Tool
-- Client runtime: Node.js 18 or later
-- Dependencies: none
+## Packages and installation
 
-## Key capabilities
+See the [versioned package directory](https://github.com/CyberMacs/Codex-InDesign-Bridge/tree/main/Downloads). Choose the v0.3.1 preview ZIP appropriate to your task. This repository currently distributes these small source-based packages in Downloads; no GitHub Release entry has been created for this preview:
 
-- Prove a live session and list open documents before writing.
-- Inspect page items and text content.
-- Create bridge-owned documents, pages, layers, colors, text frames, and rectangles.
-- Edit an existing document only after an explicit ID-and-name attachment creates an INDD backup.
-- Place vetted local image assets.
-- Save INDD or INDT copies and export PDF or IDML.
+- `Codex-InDesign-Bridge-v0.3.1-preview.zip`: plug-in, client, English and Hungarian instructions, license and experimental-function notes.
+- `Codex-InDesign-Bridge-v0.3.1-source.zip`: maintainable source, tests, package script and Codex development instructions.
 
-## Security model
+Extract the user ZIP to a writable local folder. Load its `CodexInDesignBridge/manifest.json` using Adobe UXP Developer Tool, then choose a separate private session folder in the InDesign panel. This is a UXP development-load package, not a signed CCX installer.
 
-The selected bridge folder is a trust boundary. Any local process able to write a request into that folder can command the active panel. Select a private folder, run non-mutating checks first, attach existing documents explicitly, inspect outputs, and stop the connection when finished.
+- [Install](INSTALL.md) / [Telepítés magyarul](INSTALL.hu.md)
+- [Usage](USAGE.md) / [Használat magyarul](USAGE.hu.md)
+- [Experimental operation and limitations](docs/EXPERIMENTAL.md)
+- [Development](docs/DEVELOPMENT.md)
 
-The protocol rejects arbitrary code, file traversal, stale sessions, expired requests, and oversized batches. Requests that time out must not be resent blindly; inspect the correlated response file first.
+## Trust and recovery
 
-## Install and use
+Any local process with write access to the selected session folder can submit commands. Use a private local folder, inspect before editing, attach an existing document by its exact ID and name with an INDD backup, and stop the connection when finished. A timeout may still leave a completed or partially changed document: inspect the matching response and claim instead of resending the operation.
 
-The release download contains only the loadable plug-in, the local client needed to communicate with it, and the installation and usage guides:
+## Validation
 
-- [Installation](INSTALL.md)
-- [Usage](USAGE.md)
-- [Download Codex-InDesign-Bridge-v0.3.0.zip](Downloads/Codex-InDesign-Bridge-v0.3.0.zip)
-- [SHA-256 checksum](Downloads/Codex-InDesign-Bridge-v0.3.0.zip.sha256)
-
-## Verification status
-
-Automated protocol, client, and simulated executor checks passed for v0.3.0. The submitted screenshots show the panel loaded in InDesign, but this publishing session did not establish an active Bridge session; a live smoke test remains required before presenting a release as fully production-verified.
-
-## Repository contents
-
-The GitHub repository includes documentation and screenshots. The downloadable release asset is deliberately smaller: only the plug-in, client, INSTALL.md, and USAGE.md.
+Protocol/client round trips, queue replay prevention, attachment guards and experimental-operation guards are tested with Node mocks. They do not prove Adobe DOM compatibility. Live loading/execution of this v0.3.1 panel and another-machine installation remain unverified. Historical v0.2 screenshots in docs/images are not v0.3.1 test evidence.
 
 ## License
 
-Released under the [MIT License](LICENSE).
+The existing [MIT License](LICENSE) is preserved. No InDesign documents, fonts, user images, API keys or private session data are included in the new packages.

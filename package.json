@@ -1,0 +1,14 @@
+{
+  "name": "codex-indesign-bridge",
+  "version": "0.3.1",
+  "private": true,
+  "description": "Local InDesign UXP file bridge; v0.3.1 preview",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test Tests/test.cjs Tests/queue-test.cjs Tests/attach-test.cjs Tests/restoration-test.cjs",
+    "package": "python Tools/package.py"
+  },
+  "license": "MIT"
+}

@@ -1,6 +1,6 @@
 "use strict";
-const VERSION = "0.3.0";
-const OPS = ["ping", "listDocuments", "inspect", "createDocument", "addPage", "addLayer", "addColor", "addText", "addRectangle", "updateItem", "placeImage", "saveCopy", "exportPDF", "exportIDML"];
+const VERSION = "0.3.1";
+const OPS = ["ping", "listDocuments", "inspect", "createDocument", "addPage", "addLayer", "addColor", "addText", "addRectangle", "updateItem", "placeImage", "saveCopy", "exportPDF", "exportIDML", "restorationBook"];
 function assert(test, message) { if (!test) throw new Error(message); }
 function basename(value) {
   assert(typeof value === "string" && /^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,119}$/.test(value) && !value.includes(".."), "Csak egyszerű angol fájlnév használható.");
@@ -20,6 +20,11 @@ function validate(request, session, now) {
   assert(Array.isArray(request.operations) && request.operations.length > 0 && request.operations.length <= 100, "1–100 művelet küldhető.");
   request.operations.forEach(op => {
     assert(op && (OPS.includes(op.op) || op.op === "attachDocument"), "Nem támogatott művelet: " + (op && op.op));
+    if (op.op === "restorationBook") {
+      assert(["fonts", "build", "qa", "save"].includes(op.action), "Unknown restorationBook action.");
+      if (["build", "save"].includes(op.action)) assert(op.experimental === true, "Experimental builder requires experimental: true.");
+      if (["qa", "save"].includes(op.action)) assert(Number.isInteger(op.documentId), "documentId required");
+    }
     if (op.op === "attachDocument") {
       assert(Number.isInteger(op.documentId), "documentId required");
       assert(typeof op.expectedName === "string" && op.expectedName.length > 0, "expectedName required");
